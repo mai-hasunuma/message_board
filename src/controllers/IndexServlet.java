@@ -1,12 +1,17 @@
 package controllers;
-
 import java.io.IOException;
+import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+// modelとutilsのインポート
+import model.Message;
+import utils.DBUtil;
 
 /**
  * Servlet implementation class IndexServlet
@@ -27,8 +32,14 @@ public class IndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        // EntityManagerオブジェクトの生成　データベースにアクセスできる　
+        // EntityManagerにはpersist（新規保存）、remove（削除）、merge（更新）、find（検索）などの基本メソッドがある
+        EntityManager em = DBUtil.createEntityManager();
+        // createNamedQuery("名前付きクエリ名", クラス名.class)→名前つきクエリを実行する
+        // .getResultList() Listで結果を取得する
+        List<Message> messages = em.createNamedQuery("getAllMessages", Message.class).getResultList();
+        response.getWriter().append("Served at: ").append(Integer.valueOf(messages.size()).toString());
+        em.close();
     }
 
 }

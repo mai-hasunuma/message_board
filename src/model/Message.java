@@ -7,13 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+// @Entity　Hebernateを用いてクラスを書くときは必ず記述するルールになっている
 @Entity
+@NamedQueries({
+    // @NameQueryアノテーションをもちいることで書きの通りselect文に名前をつけることができる
+    @NamedQuery(
+            // 下のselect文にgetAllMessagesという名前をつけた
+            name = "getAllMessages",
+            // select m : select * と同じ意味
+            query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+            )
+})
 @Table(name = "message")
 public class Message {
     @Id
     @Column(name = "id")
+    // @GeneratedValueは主キーにつけることでユニークな値を自動で生成してくれる
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
