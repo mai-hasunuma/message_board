@@ -34,6 +34,7 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = (String)request.getParameter("_token");
         // csrf対策のチェック
+        // NewServletから_formに送られたセッションIDと今取得したセッションIDが一致し、_tokenがnull出ない場合正式に新規作成されるようチェックしている
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 

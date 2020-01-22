@@ -61,6 +61,7 @@ public class NewServlet extends HttpServlet {
         response.getWriter().append(Integer.valueOf(m.getId()).toString());*/
 
         // csrf対策
+        // request.getSession().getId()でセッションidを取得している。そして_formにhiddenfieldで持たせている
         request.setAttribute("_token", request.getSession().getId());
 
         //　_form.jspでvalueの値を出すときにエラーが出ないように記載しているだけ
