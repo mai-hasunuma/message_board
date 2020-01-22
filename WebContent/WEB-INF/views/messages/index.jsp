@@ -17,7 +17,7 @@
             </c:forEach>
         </ul>
 
-        <p><a href="${pageContextrequest.contextPath}/new">新規メッセージの投稿</a></p>
+        <p><a href="${pageContext.request.contextPath}/new">新規メッセージの投稿</a></p>
 
     </c:param>
 
