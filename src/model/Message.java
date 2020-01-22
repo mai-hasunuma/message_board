@@ -1,6 +1,6 @@
 package model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -77,6 +77,7 @@ public class Message {
     public Timestamp getUpdated_at() {
         return updated_at;
     }
+
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
