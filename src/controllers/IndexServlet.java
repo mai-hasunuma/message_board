@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// modelとutilsのインポート
-import model.Message;
+import models.Message;
 import utils.DBUtil;
 
 /**
